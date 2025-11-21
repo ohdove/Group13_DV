@@ -1,0 +1,15 @@
+METRIC,JURISDICTION,FINES,ARRESTS,CHARGES,Positive_Tests
+breath_tests_conducted,ACT,0,55,644,644
+breath_tests_conducted,NSW,3631,0,9364,12995
+breath_tests_conducted,NT,231,489,1355,8717
+breath_tests_conducted,QLD,0,0,0,15336
+breath_tests_conducted,SA,1333,249,2852,4434
+breath_tests_conducted,VIC,0,0,0,5407
+breath_tests_conducted,WA,1920,432,8348,10268
+drug_tests_conducted,ACT,0,36,227,227
+drug_tests_conducted,NSW,14600,0,24174,38774
+drug_tests_conducted,QLD,0,34,12063,12063
+drug_tests_conducted,SA,3101,120,1879,5333
+drug_tests_conducted,TAS,0,0,0,2787
+drug_tests_conducted,VIC,0,0,0,5376
+drug_tests_conducted,WA,0,9,6709,21714

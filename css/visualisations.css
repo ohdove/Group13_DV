@@ -1,0 +1,738 @@
+#charts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+/* Each chart card */
+.chart-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 80%;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Chart images */
+.chart-card .chart {
+  width: 60%;
+}
+
+/* Stacked charts (for the line charts) */
+.stacked-charts {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+    width: 90%; 
+    max-width: 850px; 
+    margin: 0 auto; 
+    align-items: center; 
+}
+
+.chart-controls {
+
+    width: max-content;
+    text-align: center;
+    margin: 20px auto 30px auto; 
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #f0f7ff; 
+
+}
+
+.chart-controls label {
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 1em; 
+    color: #0e0450;
+}
+
+.chart-controls select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 40px 10px 20px;
+    background: white url('data:image/svg+xml;utf8,<svg fill="black" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 10,0 5,6"/></svg>') no-repeat right 20px center / 12px;
+    border: 2px solid #01325b;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.chart-controls select:hover {
+    border-color: #577594; 
+}
+
+#alcohol-chart, #drug-chart {
+    height: 550px; 
+    width: 100%;
+}
+
+#chart-legend {
+    text-align: center;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* Title + Description section */
+.chart-info {
+  width: 40%;
+  text-align: left;
+}
+
+.chart-info h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: rgb(54, 44, 27);
+}
+
+.chart-info p {
+  color: #555;
+  font-size: 1.12em;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .chart-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-card .chart,
+  .stacked-charts,
+  .chart-info {
+    width: 100%;
+  }
+
+  .chart-info {
+    text-align: center;
+  }
+}
+
+
+.summary-card {
+  background: linear-gradient(135deg, #080126 0%, #0f053c 100%);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+  width: 90%;
+  margin: 30px auto 60px;
+  padding: 20px 50px;
+  text-align: left;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+}
+
+/* List layout */
+.summary-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-card h3{
+  font-size: 5em;
+  font-family: 'Forum', serif;
+  color: #d0c6ff;
+}
+
+
+.summary-card li {
+  background: transparent;                /* remove box */
+  border-radius: 0;                       /* no rounded cards */
+  box-shadow: none;                       /* no shadow */
+  backdrop-filter: none;                  /* no glass effect */
+  padding: 50px 0;                        /* vertical spacing only */
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  font-size: 1.5em;
+  font-family: 'Outfit', sans-serif;
+}
+
+
+.summary-card li:first-child {
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.summary-card li:hover {
+  background: transparent;               
+  transform: translateX(20px);
+  box-shadow: none;
+}
+
+/* Links inside */
+.summary-card a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 600;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.summary-card a:hover {
+  color: #dbcdf3; 
+}
+
+
+/* Chart Tooltip*/
+.chart-tooltip {
+  position:absolute;
+  background: rgba(0,0,0,0.85); 
+  color: #fff;
+  border-radius: 6px; 
+  padding: 10px 14px; 
+  font-size: 14px; 
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Tooltip Header Style*/
+.chart-tooltip strong.tooltip-header {
+  font-size: 15px;
+  display: block; 
+  margin-bottom: 8px; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.916); 
+  padding-bottom: 6px;
+}
+
+/* Tooltip Data Row Container Style */
+.chart-tooltip .tooltip-row {
+  margin: 6px 0; 
+  display: flex; 
+  align-items: center; 
+  font-size: 15px;
+}
+
+/* Tooltip Color Swatch Style */
+.chart-tooltip .tooltip-swatch {
+  width: 14px; 
+  height: 14px; 
+  border-radius: 50%; 
+  margin-right: 8px; 
+  border: 2px solid white;
+}
+
+/* Pie legend container */
+#pie-legend {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#pie-legend .legend-items {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-weight: 600;
+  color: black;
+}
+
+#pie-legend .legend-item span {
+  vertical-align: middle;
+}
+
+/* ---------------------- */
+/* User Story Section     */
+/* ---------------------- */
+.user-story {
+  width: 90%;
+  margin: 5px auto;
+  padding: 70px 50px;
+  background: linear-gradient(135deg, #e5e0ff 0%, #e7ffc0 100%);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  color: #333;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.user-story-left {
+  flex: 1;
+}
+
+.user-story-right {
+  flex: 2;
+}
+
+
+/* Fake border layer */
+.user-story::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  border: 3px solid #050061;   /* red border */
+  border-radius: 15px;          /* curve ONLY the border */
+  
+  pointer-events: none;
+  z-index: -1;
+}
+
+.user-story h3 {
+  font-size: 4.8em;
+  padding-top: 100px;
+  margin: -10px 0;
+  font-family: 'Forum', serif;
+  color: #2a2a52;
+}
+
+.user-story p {
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+.user-story ol {
+  counter-reset: step;
+  padding-left: 40px;
+}
+
+.user-story li {
+  counter-increment: step;
+  padding: 20px 0;
+  font-size: 1.6em;
+  display: flex;
+  align-items: center;
+  font-family: 'Forum', serif;
+  font-weight: bold;
+}
+
+.user-story li::before {
+  content: counter(step) ".";
+  color: #4a5bb5;
+  font-weight: bold;
+  font-size: 2em;
+  margin-right: 12px;
+}
+
+@media (max-width: 900px) {
+  .user-story {
+    padding: 30px 25px;
+    text-align: left;
+  }
+
+  .user-story h3 {
+    font-size: 1.7em;
+  }
+}
+
+/* Scroll down arrow container */
+.scroll-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 30px auto 0;
+  gap: 2px;
+  width: 30px;
+}
+
+/* Each arrow */
+.scroll-down span {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-bottom: 3px solid #2a2a52;
+  border-right: 3px solid #2a2a52;
+  transform: rotate(45deg);
+  animation: arrowBounce 1.2s infinite;
+}
+
+/* Offset the second arrow for cascading effect */
+.scroll-down span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+/* Arrow bounce animation */
+@keyframes arrowBounce {
+  0% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: rotate(45deg) translate(0, 8px);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(0, 0);
+    opacity: 0;
+  }
+}
+
+
+#mapChartContainer {
+    transform: translateY(-70px); 
+    transition: transform 0.5s ease; 
+}
+#mapChartContainer.zoomed {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0px);
+}
+
+/* Original styles below remain the same */
+#mapChartContainer .chart-controls {
+    opacity: 0;
+    pointer-events: none; 
+    transition: opacity 0.5s ease;
+}
+
+#mapChartContainer .chart-controls label{
+  margin-right: -50px;
+}
+
+/* Show the filter when the container is "zoomed" (which happens when viewing Australia) */
+#mapChartContainer.zoomed .chart-controls {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.chart-title-box {
+  position: relative;
+  padding: 15px;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  height: 500px;
+  width: 70%;
+  margin: 0 auto 20px auto;
+  overflow: hidden;           /* hide video edges */
+  background: linear-gradient(#000000, transparent);
+}
+
+/* Text container above video */
+.chart-title-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text styling */
+.box1 h2 {
+  font-family: 'Forum', serif;
+  color: white;
+  font-size: 100px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  margin-top: 60px;
+}
+
+.box1 p {
+  font-family: "Outfit", sans-serif;
+  color: white;
+  font-size: 36px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.box2 h2 {
+  font-family: 'Forum', serif;
+  color: white;
+  font-size: 100px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  margin-top: 60px;
+}
+
+.box2 p {
+  padding: 20px;
+  font-family: "Outfit", sans-serif;
+  color: white;
+  font-size: 27px;
+  margin: 0;
+  font-weight: bold;
+}
+
+
+
+
+/* ===== MAP ===== */
+
+
+#map-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  padding-top: 8%;
+}
+
+/* Top part: map + right-side controls */
+#map-chart .map2-layout {
+  display: flex;
+  align-items: center;  
+  justify-content: center; 
+  gap: 0px;         
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; 
+}
+
+/* Map area: stay inside card, no translateY */
+#map-chart #mapChartContainer.chart {
+  width: 65%;        /* give room for controls */
+  margin: 0;
+  position: relative;
+  transform: none;
+}
+
+/* Right column: slider + legend stacked */
+#map-chart .map2-controls {
+  width: 35%;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  padding-left: 5%;
+
+}
+
+/* Override generic chart-controls styling for the slider box: NO framed box */
+#map-chart .chart-controls {
+  max-width: 100px;
+  width: 60%;
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+
+}
+
+/* Keep controls visible (in case global rules hide them when .zoomed etc.) */
+#map-chart #mapChartContainer .chart-controls {
+  opacity: 1;
+  pointer-events: all;
+
+}
+
+/* Slider panel: label + slider + moving year tag */
+#map-year-slider-panel-2 {
+  position: relative;
+  width: 100px;
+  height: 300px;
+  margin: 0 auto;
+
+}
+
+/* "Year" label above the slider */
+#map-year-slider-panel-2::before {
+  content: "Year";
+  position: absolute;
+  top: -32px;              /* space above slider */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Vertical slider in the middle of the panel */
+#map-year-slider-panel-2 input[type="range"] {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  transform: translate(-50%, -50%) rotate(270deg);
+}
+
+/* Year label that moves with JS (top% set in mapv2.js) */
+#map-year-label {
+  position: absolute;
+  left: 100%;          /* right of slider */
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #222;
+  padding: 0;
+  white-space: nowrap;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Legend box under the slider, centred */
+#map-chart .map2-legend {
+  width: auto;                 /* shrink to content */
+  margin: 4px auto 0;          /* centre under slider column */
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: left;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Legend items styling */
+#map-chart .map2-legend .legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+#map-chart .map2-legend .legend-swatch {
+  width: 14px;
+  height: 14px;
+}
+
+/* ===== Text row under map+controls: title LEFT, description RIGHT ===== */
+
+#map-chart .chart-info {
+  width: 90%;
+  margin-top: 5%;
+  padding-left: 8%;
+  padding-right: 8%;
+  display: block; 
+}
+
+/* Two-column layout inside */
+#map-chart .map2-text-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* title | description */
+  column-gap: 20px;
+  align-items: flex-start;
+}
+
+/* Left column = title */
+#map-chart .map2-title h3 {
+  margin: 0;
+  text-align: left;
+}
+
+/* Right column = description */
+#map-chart .map2-description p {
+  margin: 0;
+}
+
+/* Responsive: stack nicely on small screens */
+@media (max-width: 900px) {
+  #map-chart .map2-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #map-chart #mapChartContainer.chart {
+    width: 100%;
+  }
+
+  #map-chart .map2-controls {
+    width: 100%;
+    max-width: 260px;
+    margin-top: 16px;
+  }
+
+  #map-chart .chart-info {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  #map-chart .chart-info h3,
+  #map-chart .chart-info p {
+    grid-column: 1;
+    text-align: left;
+  }
+}
+
+
+
+
+/* ===== SUNBURST CHART ===== */
+
+#sunburst-chart .chart {
+  width: 60%;
+}
+
+#sunburst-container {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+/* Make the SVG fill the container */
+#sunburst-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Tooltip for sunburst */
+.sunburst-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #222;
+  z-index: 10;
+}
+
+/* Center label inside the sunburst */
+#sunburst-center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  pointer-events: none;
+  color: #222;
+}
+
+.sunburst-warning-icon {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e53935;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  z-index: 15;
+}
+
+.sunburst-warning-tooltip {
+  position: absolute;
+  left: 40px;       /* a bit to the right of the icon */
+  bottom: 12px;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  background: #ffffff;
+  color: #222;
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  pointer-events: none;   /* so hover is controlled only by the icon */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 14;
+}
+
+
+

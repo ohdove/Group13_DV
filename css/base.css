@@ -1,0 +1,246 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #250548 0%, #391854 35%, #25246f 70%, #090748 100%);
+  background-attachment: fixed; 
+  font-family: 'Outfit', sans-serif;
+}
+
+.background-container-first {
+  width: 100%;
+  height: 750px; 
+  background-image: linear-gradient(rgba(5, 2, 58, 0.8), rgba(12, 3, 57, 0.5)), url("../images/backgroun2.jpg"); 
+  background-size: cover;    
+  background-repeat: no-repeat;
+  background-position: center; 
+  min-height: 100vh;         /* fill the screen */
+  position: relative;  
+}
+
+main{
+  position: relative;
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+  color: rgb(255, 244, 255);
+  font-size: 5em;
+  padding-top: 150px;
+}
+
+h2{
+  text-align: center;
+  color: rgb(255, 244, 255);
+  font-size: 3em;
+}
+
+h1, h2 {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 1.5s ease-out forwards;
+  font-family: "Anton", sans-serif;
+}
+
+h2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+img.chart{
+  width: 50%;
+  height: auto;
+}
+
+.navbar {
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding: 20px 0;
+  font-family: 'Forum', static;
+  font-size: 17px;
+  z-index: 9999;          
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.navbar a:hover {
+  background-color: rgba(185, 236, 249, 0.2);
+  border-radius: 5px;
+}
+
+footer {
+  background: #f5f5f5;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
+
+
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  background: #ffff;
+  color: #242D68;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+
+  /* start hidden */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  transform: translateY(-2px);
+}
+
+/* ------------------------- */
+/* Scroll-triggered Animations */
+/* ------------------------- */
+
+/* Base hidden state for all scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+/* Show element when visible */
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Directional & scale variants */
+.animate-left { transform: translateX(-50px); }
+.animate-left.visible { transform: translateX(0); }
+
+.animate-right { transform: translateX(50px); }
+.animate-right.visible { transform: translateX(0); }
+
+.animate-up { transform: translateY(50px); }
+.animate-up.visible { transform: translateY(0); }
+
+.animate-down { transform: translateY(-50px); }
+.animate-down.visible { transform: translateY(0); }
+
+.animate-scale { transform: scale(0.8); }
+.animate-scale.visible { transform: scale(1); }
+
+/* Fade in only */
+.animate-fade { opacity: 0; }
+.animate-fade.visible { opacity: 1; transition: opacity 1s ease-out; }
+
+.overview-card {
+  background: rgba(20, 20, 40, 0.85);  /* semi-transparent dark background */
+  backdrop-filter: blur(10px);         /* subtle glass effect */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  padding: 40px 50px;
+  max-width: 900px;
+  margin: 40px auto;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.overview-card h3 {
+  font-size: 2em;
+  font-family: 'Anton', sans-serif;
+  color: #d0c6ff;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #dbcdf3;
+  padding-bottom: 10px;
+}
+
+.overview-card p {
+  font-size: 1.2em;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-family: 'Outfit', sans-serif;
+  color: #eee;
+}
+
+.overview-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 50px 0;
+}
+
+.overview-card li {
+  background: transparent;                /* remove box */
+  border-radius: 0;                       /* no rounded cards */
+  box-shadow: none;                       /* no shadow */
+  backdrop-filter: none;                  /* no glass effect */
+  padding: 30px 0;                        /* vertical spacing only */
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  font-size: 1em;
+  font-family: 'Outfit', sans-serif;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.overview-card li:first-child {
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.overview-card li:hover {
+  color: #ffc0cb;                 /* subtle hover color change */
+  transform: translateX(10px);
+}
+
+.overview-card a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.overview-card a:hover {
+  color: #dbcdf3;
+}
+

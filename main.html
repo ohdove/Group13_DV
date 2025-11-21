@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/visualisations.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  
+  <main>
+    <div class="background-container-first">
+      <div>
+        <header class="navbar">
+          <nav>
+            <a href="main.html" class="navbox">Home</a>
+            <a href="about.html" class="navbox">About Us</a>
+          </nav>
+        </header>
+        <h1>Drug & Alcohol Testing Dashboard</h1>
+        <h2>Trends, Outcomes, and Enforcement Insights</h2>
+      </div>
+    </div>
+
+    <!-- User Story / Overview Section -->
+    <section class="user-story animate-on-scroll animate-left">
+      <div class="user-story-left">
+        <h3>What You Can Discover</h3>
+        <p>This dashboard helps you explore key insights into drug and alcohol testing across Australia.</p>
+        <div class="scroll-down" onclick="scrollToTrends()">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="user-story-right">
+        <ol>
+          <li class="animate-on-scroll animate-scale">Compare test outcomes across different age groups</li>
+          <li class="animate-on-scroll animate-scale">Understand trends in fines, arrests, and charges</li>
+          <li class="animate-on-scroll animate-scale">Examine how enforcement varies by jurisdiction</li>
+          <li class="animate-on-scroll animate-scale">Identify areas with higher positive test counts using an interactive 3D map</li>
+        </ol>
+      </div>
+    </section>
+
+    
+    <!-- Table of content -->
+    <section id="all-trends" class="summary-card">
+      <h3 class="user-story-right animate-on-scroll animate-right">ALL TRENDS</h3>
+      <ul>
+        <li class="user-story-right animate-on-scroll animate-right"><a href="#bar-chart">BAR CHART: Mean Positive Count by Age Group</a></li>
+        <li class="user-story-right animate-on-scroll animate-right"><a href="#line-charts">MULTIPLE LINE CHART: Penalty Outcomes by Age Group</a></li>
+        <li class="user-story-right animate-on-scroll animate-right"><a href="#sunburst-charts">SUNBURST CHART: Test Type and its Enforcement Outcome</a></li>
+        <li class="user-story-right animate-on-scroll animate-right"><a href="#map-section">MAP: Positive Test Rate by Area</a></li>
+      </ul>
+    </section>
+
+    <div class="chart-title-box box1">
+      <div class="chart-title-content" id="bar-chart">
+        <h2>Bar Chart</h2>
+        <p class="user-story-right animate-on-scroll animate-right">
+          This bar chart displays the mean positive counts across age groups for 
+          breath and drug tests in 2023 and 2024. Users can filter the data by selecting 
+          either breath tests, drug tests, or viewing all tests combined by default.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Bar Chart-->
+    <section id="charts">
+      <div class="chart-card animate-on-scroll animate-scale">
+        <div class="chart">
+
+          <div class="chart-controls">
+            <label for="bar-test-type">Select Test Type:</label>
+            <select id="bar-test-type">
+              <option value="all">All Tests</option>
+              <option value="breath">Breath Tests</option>
+              <option value="drug">Drug Tests</option>
+            </select>
+          </div>
+          <div id="barChartContainer"></div>
+        </div>
+
+        <div class="chart-info">
+          <h3 class="user-story-right animate-on-scroll animate-right">Bar Chart: Mean Positive Count by Age Group</h3>
+          <p class="user-story-right animate-on-scroll animate-right">
+           The highest overall positive test counts occur in the 26–39 age group (6,563.9), followed closely by the 40–64 group (6,259.6), while the 0–16 age group has the lowest count (27.7). When looking at breath tests, the 40–64 group leads (2,239.4), with 26–39 second (2,196.9). For drug tests, the 26–39 group has the highest count (4,367), followed by 40–64 (4,020.2). This highlights that adults aged 26–64 are the most affected across different test types.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="chart-title-box box2" id="line-charts">
+        <div class="chart-title-content">
+          <h2>Line Chart</h2>
+          <p class="user-story-right animate-on-scroll animate-right">
+            These line charts show trends in fines, arrests, and charges across different age groups for alcohol and drug tests in 2024. The top chart displays alcohol enforcement outcomes, while the bottom chart shows drug enforcement outcomes. 
+            Users can select a jurisdiction using the filter above, which updates both charts simultaneously for easy comparison. 
+            Each chart has three colored lines representing fines (blue), arrests (green), and charges (yellow). Hovering over a point displays the exact count for that outcome and age group.
+          </p>
+        </div>
+      </div>
+
+      <!-- Multiple Line Charts-->
+      <div class="chart-card animate-on-scroll animate-scale">
+        <div class="stacked-charts">
+            <div class="chart-controls">
+                <label for="jurisdiction-filter">Select Jurisdiction:</label>
+                <select id="jurisdiction-filter">
+                    </select>
+            </div>
+            <div id="alcohol-chart" class="chart"></div>
+            <div id="chart-legend"></div>
+            <div id="drug-chart" class="chart"></div>
+        </div>
+        <div class="chart-info">
+          <h3 class="user-story-right animate-on-scroll animate-right">Alcohol Tests Enforcement Outcome</h3>
+          <p class="user-story-right animate-on-scroll animate-right">
+            For alcohol tests, fines and charges are highest among the 26–39 and 40–64 age groups, particularly in NSW and WA, while arrests peak slightly lower in the same age ranges. The youngest (0–16) and oldest (65+) groups consistently show very low enforcement activity across all jurisdictions.
+          </p>
+          <h3 class="user-story-right animate-on-scroll animate-right">Drug Test Enforcement Outcome</h3>
+          <p class="user-story-right animate-on-scroll animate-right">
+            Drug-related fines and charges are dominated by the 26–39 and 40–64 age groups in NSW, with notably higher fines than alcohol tests. Arrests are also higher in these groups but remain relatively low in most other jurisdictions. Younger (0–16) and older (65+) groups see minimal enforcement.
+          </p>
+          <h3 class="user-story-right animate-on-scroll animate-right">Comparison</h3>
+          <p class="user-story-right animate-on-scroll animate-right">
+            Overall, both alcohol and drug enforcement focus on adults aged 26–64, but drug tests generate significantly higher fines and charges, especially in NSW. Alcohol enforcement shows a more balanced distribution across fines, arrests, and charges, whereas drug enforcement is heavily skewed towards fines and charges rather than arrests.
+          </p>
+        </div>
+      </div>
+
+      <div class="chart-title-box box2" id="sunburst-charts">
+        <div class="chart-title-content">
+          <h2>Sunburst Chart</h2>
+          <p class="user-story-right animate-on-scroll animate-right">
+            This sunburst visualises the structure of enforcement outcomes across
+            jurisdictions, test types, and penalty types in 2024.
+            It lets users explore how different layers contribute to total enforcement.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="chart-card" id="sunburst-chart">
+        <div class="chart">
+
+          <div class="chart-controls">
+            <label for="sunburst-jurisdiction">Select Jurisdiction:</label>
+            <select id="sunburst-jurisdiction"></select>
+          </div>
+
+          <div id="sunburst-container"></div>
+
+        </div>
+
+        <div class="chart-info">
+          <h3>Sunburst Chart: Test Type and its Enforcement Outcome in 2024</h3>
+          <p class="user-story-right animate-on-scroll animate-right">
+            Across jurisdictions, NSW and WA dominate enforcement activity, showing both high 
+            positive test counts and strong follow-through with penalties.
+            In contrast, states like QLD, VIC, and TAS show high numbers of positive breath or 
+            drug tests but little to no penalty data, suggesting reporting gaps rather than weaker 
+            enforcement. This creates a visible divide, as some jurisdictions display a consistent 
+            escalation from detection to penalties, while others show detection without documented 
+            outcomes, highlighting major variations in enforcement reporting and data completeness 
+            across Australia.
+          </p>
+        </div>
+      </div>
+
+
+
+      <div class="chart-title-box box2" id="map-section">
+        <div class="chart-title-content">
+          <h2>Map</h2>
+          <p class="user-story-right animate-on-scroll animate-right">
+            This map displays the total positive test count by Australian jurisdiction for different year.
+            Click on <strong>Australia (dark blue)</strong> to zoom in and see the choropleth map.
+            The slider allows users to change the year, automatically updating the choropleth map to display the total positive test counts for the selected year.
+            Hover over a state for the exact count. Click the map again to return to the world view.
+          </p>
+        </div>
+      </div>
+
+      <!-- Map Chart Card -->
+
+      <div class="chart-card animate-on-scroll animate-scale" id="map-chart">
+        <div class="map2-layout">
+          <!-- MAP AREA (D3 will append the SVG inside this div) -->
+          <div id="mapChartContainer" class="chart"></div>
+
+          <!-- SLIDER + LEGEND COLUMN -->
+          <div class="map2-controls">
+            <!-- Slider + moving year label -->
+            <div class="chart-controls map2-slider-box">
+              <div id="map-year-slider-panel-2">
+                <input type="range" id="map-year-filter" orient="vertical">
+                <div id="map-year-label"></div>
+              </div>
+            </div>
+
+            <!-- Legend (map 2 only) -->
+            <div id="map-legend" class="map2-legend"></div>
+          </div>
+        </div>
+
+        <!-- Description under the map + controls -->
+          <!-- Description row under the map + controls -->
+        <div class="chart-info">
+          <div class="map2-text-row">
+            <div class="map2-title">
+              <h3>Map: Positive Test Rate by Area</h3>
+            </div>
+            <div class="map2-description">
+              <p class="user-story-right animate-on-scroll animate-right">
+                Across 2008–2024, QLD consistently records the highest positive test counts, 
+                staying above 12k almost every year, while NSW sits in second place until a sharp 
+                collapse after 2022. NT shows a dramatic fall from very high early values (9–14k) 
+                to very low levels after 2021, suggesting major changes in testing or reporting. 
+                Meanwhile, VIC, SA, WA, TAS, and ACT remain relatively stable in lower-to-mid ranges 
+                with gradual declines over time. 
+              </p>
+              <br>
+              <p class="user-story-right animate-on-scroll animate-right">
+                NSW consistently shows the highest positive test counts across all years, 
+                followed closely by QLD and NT. Smaller jurisdictions such as ACT, TAS, and SA 
+                generally report lower totals. The map highlights a clear concentration of positive 
+                tests in eastern and northern Australia, emphasizing regions with higher enforcement 
+                activity and testing outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </section>
+  </main>
+  <footer>
+    <p>Group 13 | Data Visualisation Project Design Book and Website</p>
+  </footer>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="js/lineCharts.js"></script>
+  <script src="js/pieChart.js"></script>
+  <script src="js/barChart.js"></script>
+  <script src="js/sunburst.js"></script>
+  <script src="js/mapv2.js"></script> 
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+  <script src="js/worldGlobe.js"></script>
+  <script src="js/scrollButton.js"></script>
+  <script>
+    function scrollToTrends() {
+      const trendsSection = document.getElementById("all-trends");
+      trendsSection.scrollIntoView({ behavior: "smooth" });
+    }
+    </script>
+</body>
+<button id="back-to-top">↑</button>
+
+</html>
+
+</body>
+</html>
